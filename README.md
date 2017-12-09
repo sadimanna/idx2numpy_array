@@ -7,7 +7,7 @@ To convert idx formatted files to numpy array ::
 **Just run the code** with the **_proper file path_ in the dictionary _filename_**
 
 The section **Extra Stuffs** in the code is used to speed up the stacking process in the numpy array
-Actually stacking all at once was taking **polynomial time** according to my naive calculations (2.5 hours I calculated -_-). So, I decided to divided the whole datasets into sub-blocks of 1000 and then a bigger sub-block of 10000.
+Actually stacking all at once was taking **polynomial time** according to my naive calculations (2.5 hours I calculated -_-). So, I decided to divide the whole datasets into sub-blocks of 1000 and then a bigger sub-block of 10000.
 
 And the time taken for converting all the _60000 images_ and stacking them up in a single numpy array to form a _3D array_ was almost **52 secs** on my Laptop.
 
