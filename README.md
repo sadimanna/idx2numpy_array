@@ -30,6 +30,6 @@ I have stacked blocks of **10000 images** after reading the data of **10000X28X2
 
 And the time taken for reading _7840000_ bytes at once and stacking them all in _6 iterations_ in a single numpy array to form a _3D array_ was about **5.30509209633 seconds** on my laptop.
 
-The numpy arrays can further be converted to images usiing other librarie like opencv, PIL or scipy.
+The numpy arrays can further be converted to images using other libraries like **opencv**, **PIL** or **scipy**.
 
-But for using in a CNN, keeping in the np.ndarray format will be useful. I guess!!
+But for using in a **CNN**, keeping in the **np.ndarray** format will be useful. I guess!!
