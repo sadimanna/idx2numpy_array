@@ -1,3 +1,6 @@
+#If the number of images in the training or test set is not a integer multiple of nBatch, then uncomment the "try-except" part
+#which increases the execution time by about less than 1 second
+
 import time
 import struct as st
 import numpy as np
