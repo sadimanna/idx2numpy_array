@@ -1,3 +1,6 @@
+# If the no. of images is not a integer multiple of nBatch, uncomment "try-except" part
+# which may increase the execution time by less than 1 sec
+
 import time
 import struct as st
 import numpy as np
