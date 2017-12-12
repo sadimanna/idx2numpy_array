@@ -29,6 +29,7 @@ This code is a mixture of the above two.
 I have stacked blocks of **10000 images** after reading the data of **10000X28X28 bytes = 7840000 bytes** at once.
 
 And the time taken for reading _7840000_ bytes at once and stacking them all in _6 iterations_ in a single numpy array to form a _3D array_ was about **5.30509209633 seconds** on my laptop.
+(recently been getting about **6 secs** on my laptop)
 
 The numpy arrays can further be converted to images using other libraries like **opencv**, **PIL** or **scipy**.
 
