@@ -1,5 +1,6 @@
-# If the no. of images is not a integer multiple of nBatch, uncomment "try-except" part
-# which may increase the execution time by less than 1 sec
+#If no. of images is not a integer multiple of nBatch
+#Uncomment "try-except" part
+#This may increase the execution time by less than 1 sec
 
 import time
 import struct as st
@@ -32,14 +33,11 @@ if(magic[0] and magic[1])or(magic[2] not in data_types):
 
 #Information
 nDim = magic[3]
-print "Data is ",nDim,"-D"
-print
+print "Data is "+str(nDim)+"-D"
 dataType = data_types[magic[2]][0]
 print "Data Type :: ",dataType
-print
 dataFormat = data_types[magic[2]][1]
 print "Data Format :: ",dataFormat
-print
 dataSize = data_types[magic[2]][2]
 print "Data Size :: ",dataSize
 print
@@ -83,11 +81,11 @@ for i in xrange(1,nIter):
 	print (float(i)/nIter)*100,"% complete..."
 
 
-print train_labels_array.shape
-print train_images_array.shape
+print "Training Set Labels shape :: ",train_labels_array.shape
+print "Training Set Image shape :: ",train_images_array.shape
 
 print "Time of execution : %s seconds" % str(time.time()-stime)
-
+print
 #..........................................................For test dataset..................................................................
 print "Test Dataset......."
 stime = time.time()
@@ -103,7 +101,7 @@ if(magic[0] and magic[1])or(magic[2] not in data_types):
 
 nDim = magic[3]
 print "Data is ",nDim,"-D"
-
+print
 #offset = 0004 for number of images
 #offset = 0008 for number of rows
 #offset = 0012 for number of columns
@@ -117,7 +115,7 @@ test_labelsfile.seek(8) #Since no. of items = no. of images and is already read
 print "no. of images :: ",nImg
 print "no. of rows :: ",nR
 print "no. of columns :: ",nC
-
+print
 #Test set
 #Reading the labels
 test_labels_array = np.asarray(st.unpack('>'+dataFormat*nImg,test_labelsfile.read(nImg*dataSize))).reshape((nImg,1))
@@ -143,7 +141,7 @@ for i in xrange(1,nIter):
 	print (float(i)/nIter)*100,"% complete..."
 
 
-print test_labels_array.shape
-print test_images_array.shape
+print "Test Set Labels shape :: ",test_labels_array.shape
+print "Test Set Image shape :: ",test_images_array.shape
 
 print "Time of execution : %s seconds" % str(time.time()-stime)
