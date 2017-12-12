@@ -1,6 +1,3 @@
-#If the number of images in the training or test set is not a integer multiple of nBatch, then uncomment the "try-except" part
-#which increases the execution time by about less than 1 second
-
 import time
 import struct as st
 import numpy as np
@@ -29,8 +26,19 @@ magic = st.unpack('>4B',train_imagesfile.read(4))
 if(magic[0] and magic[1])or(magic[2] not in data_types):
 	raise ValueError("File Format not correct")
 
+#Information
 nDim = magic[3]
 print "Data is ",nDim,"-D"
+print
+dataType = data_types[magic[2]][0]
+print "Data Type :: ",dataType
+print
+dataFormat = data_types[magic[2]][1]
+print "Data Format :: ",dataFormat
+print
+dataSize = data_types[magic[2]][2]
+print "Data Size :: ",dataSize
+print
 
 #offset = 0004 for number of images
 #offset = 0008 for number of rows
@@ -45,19 +53,19 @@ train_labelsfile.seek(8) #Since no. of items = no. of images and is already read
 print "no. of images :: ",nImg
 print "no. of rows :: ",nR
 print "no. of columns :: ",nC
-
+print
 #Training set
 #Reading the labels
-train_labels_array = np.asarray(st.unpack('>'+'B'*nImg,train_labelsfile.read(nImg))).reshape((nImg,1))
+train_labels_array = np.asarray(st.unpack('>'+dataFormat*nImg,train_labelsfile.read(nImg*dataSize))).reshape((nImg,1))
 #Reading the Image data
 nBatch = 10000
 nIter = nImg/nBatch+1
-nBytes = nBatch*nR*nC
-nBytesTot = nImg*nR*nC
+nBytes = nBatch*nR*nC*dataSize
+nBytesTot = nImg*nR*nC*dataSize
 train_images_array = np.array([])
 for i in xrange(1,nIter):
 	#try:
-	temp_images_array = 255 - np.asarray(st.unpack('>'+'B'*nBytes,train_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
+	temp_images_array = 255 - np.asarray(st.unpack('>'+dataFormat*nBytes,train_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
 	'''except:
 		nbytes = nBytesTot - (nIter-1)*nBytes
 		temp_images_array = 255 - np.asarray(st.unpack('>'+'B'*nbytes,train_imagesfile.read(nbytes))).reshape((nBatch,nR,nC))'''
@@ -107,16 +115,16 @@ print "no. of columns :: ",nC
 
 #Test set
 #Reading the labels
-test_labels_array = np.asarray(st.unpack('>'+'B'*nImg,test_labelsfile.read(nImg))).reshape((nImg,1))
+test_labels_array = np.asarray(st.unpack('>'+dataFormat*nImg,test_labelsfile.read(nImg*dataSize))).reshape((nImg,1))
 #Reading the Image data
 nBatch = 10000
 nIter = nImg/nBatch+1
-nBytes = nBatch*nR*nC
-nBytesTot = nImg*nR*nC
+nBytes = nBatch*nR*nC*dataSize
+nBytesTot = nImg*nR*nC*dataSize
 test_images_array = np.array([])
 for i in xrange(1,nIter):
 	#try:
-	temp_images_array = 255 - np.asarray(st.unpack('>'+'B'*nBytes,test_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
+	temp_images_array = 255 - np.asarray(st.unpack('>'+dataFormat*nBytes,test_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
 	'''except:
 		nbytes = nBytesTot - (nIter-1)*nBytes
 		temp_images_array = 255 - np.asarray(st.unpack('>'+'B'*nbytes,test_imagesfile.read(nbytes))).reshape((nBatch,nR,nC))'''
