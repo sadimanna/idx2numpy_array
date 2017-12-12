@@ -17,6 +17,7 @@ data_types = {
         0x0E: ('>f8', 'd', 8)}
 
 #..........................................................For training dataset..............................................................
+print "Training Dataset......."
 stime = time.time()
 for name in trainingfilenames.keys():
 	if name == 'images':
@@ -88,6 +89,7 @@ print train_images_array.shape
 print "Time of execution : %s seconds" % str(time.time()-stime)
 
 #..........................................................For test dataset..................................................................
+print "Test Dataset......."
 stime = time.time()
 for name in testfilenames.keys():
 	if name == 'images':
