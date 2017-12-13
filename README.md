@@ -1,6 +1,6 @@
 # idx2numpy_array
 
-To convert idx formatted files to numpy array ::
+#**To convert idx formatted files to numpy array ::**
 
 # 1. For the file **idx2nparr.py** ::
 
@@ -34,3 +34,15 @@ And the time taken for reading _7840000_ bytes at once and stacking them all in 
 The numpy arrays can further be converted to images using other libraries like **opencv**, **PIL** or **scipy**.
 
 But for using in a **CNN**, keeping in the **np.ndarray** format will be useful. I guess!!
+
+#**To convert numpy array to image ::**
+
+**Run the file ndarr2img.py**
+
+Takes about less than 20 seconds for the trainiing images and much less than that for the test images.
+
+_Just enter the right path_
+
+The iamges will be saved in '_.jpg_' format
+
+And the labels will be saved in '_.npy_' format
