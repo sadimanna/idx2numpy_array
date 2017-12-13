@@ -1,6 +1,6 @@
 # idx2numpy_array
 
-#**To convert idx formatted files to numpy array ::**
+# **To convert idx formatted files to numpy array ::**
 
 # 1. For the file **idx2nparr.py** ::
 
@@ -35,7 +35,7 @@ The numpy arrays can further be converted to images using other libraries like *
 
 But for using in a **CNN**, keeping in the **np.ndarray** format will be useful. I guess!!
 
-#**To convert numpy array to image ::**
+# **To convert numpy array to image ::**
 
 **Run the file ndarr2img.py**
 
