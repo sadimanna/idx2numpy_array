@@ -2,7 +2,7 @@
 #Uncomment "try-except" part
 #This may increase the execution time by less than 1 sec
 
-import time
+import time,math
 import struct as st
 import numpy as np
 
@@ -39,8 +39,7 @@ print "Data Type :: ",dataType
 dataFormat = data_types[magic[2]][1]
 print "Data Format :: ",dataFormat
 dataSize = data_types[magic[2]][2]
-print "Data Size :: ",dataSize
-print
+print "Data Size :: "+str(dataSize)+" byte\n"
 
 #offset = 0004 for number of images
 #offset = 0008 for number of rows
@@ -61,11 +60,11 @@ print
 train_labels_array = np.asarray(st.unpack('>'+dataFormat*nImg,train_labelsfile.read(nImg*dataSize))).reshape((nImg,1))
 #Reading the Image data
 nBatch = 10000
-nIter = nImg/nBatch+1
+nIter = int(math.ceil(nImg/nBatch))
 nBytes = nBatch*nR*nC*dataSize
 nBytesTot = nImg*nR*nC*dataSize
 train_images_array = np.array([])
-for i in xrange(1,nIter):
+for i in xrange(0,nIter):
 	#try:
 	temp_images_array = 255 - np.asarray(st.unpack('>'+dataFormat*nBytes,train_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
 	'''except:
@@ -77,15 +76,14 @@ for i in xrange(1,nIter):
 	else:
 		train_images_array = np.vstack((train_images_array,temp_images_array))
 	temp_images_array = np.array([])
-	print "Time taken :: ",time.time()-stime
-	print (float(i)/nIter)*100,"% complete..."
+	print "Time taken :: "+str(time.time()-stime)+" seconds\n"
+	print str((float(i+1)/nIter)*100)+"% complete...\n"
 
 
-print "Training Set Labels shape :: ",train_labels_array.shape
-print "Training Set Image shape :: ",train_images_array.shape
+print "Training Set Labels shape ::",train_labels_array.shape
+print "Training Set Image shape ::",train_images_array.shape
 
-print "Time of execution : %s seconds" % str(time.time()-stime)
-print
+print "Time of execution :: "+str(time.time()-stime)+" seconds\n"
 #..........................................................For test dataset..................................................................
 print "Test Dataset......."
 stime = time.time()
@@ -121,11 +119,11 @@ print
 test_labels_array = np.asarray(st.unpack('>'+dataFormat*nImg,test_labelsfile.read(nImg*dataSize))).reshape((nImg,1))
 #Reading the Image data
 nBatch = 10000
-nIter = nImg/nBatch+1
+nIter = int(math.ceil(nImg/nBatch))
 nBytes = nBatch*nR*nC*dataSize
 nBytesTot = nImg*nR*nC*dataSize
 test_images_array = np.array([])
-for i in xrange(1,nIter):
+for i in xrange(0,nIter):
 	#try:
 	temp_images_array = 255 - np.asarray(st.unpack('>'+dataFormat*nBytes,test_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
 	'''except:
@@ -137,11 +135,11 @@ for i in xrange(1,nIter):
 	else:
 		test_images_array = np.vstack((test_images_array,temp_images_array))
 	temp_images_array = np.array([])
-	print "Time taken :: ",time.time()-stime
-	print (float(i)/nIter)*100,"% complete..."
+	print "Time taken :: "+str(time.time()-stime)+" seconds\n"
+	print str((float(i+1)/nIter)*100)+"% complete...\n"
 
 
-print "Test Set Labels shape :: ",test_labels_array.shape
-print "Test Set Image shape :: ",test_images_array.shape
+print "Test Set Labels shape ::",test_labels_array.shape
+print "Test Set Image shape ::",test_images_array.shape
 
 print "Time of execution : %s seconds" % str(time.time()-stime)
