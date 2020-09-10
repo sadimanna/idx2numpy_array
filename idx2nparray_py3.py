@@ -61,7 +61,7 @@ nBytes = nBatch*nR*nC*dataSize
 nBytesTot = nImg*nR*nC*dataSize
 train_images_array = np.array([])
 for i in range(0,nIter):
-	temp_images_array = 255 - np.asarray(st.unpack('>'+dataFormat*nBytes,train_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
+	temp_images_array = np.asarray(st.unpack('>'+dataFormat*nBytes,train_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
 	#Stacking each nBatch block to form a larger block
 	if train_images_array.size == 0:
 		train_images_array = temp_images_array
@@ -117,7 +117,7 @@ nBytes = nBatch*nR*nC*dataSize
 nBytesTot = nImg*nR*nC*dataSize
 test_images_array = np.array([])
 for i in range(0,nIter):
-	temp_images_array = 255 - np.asarray(st.unpack('>'+dataFormat*nBytes,test_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
+	temp_images_array = np.asarray(st.unpack('>'+dataFormat*nBytes,test_imagesfile.read(nBytes))).reshape((nBatch,nR,nC))
 	#Stacking each nBatch block to form a larger block
 	if test_images_array.size == 0:
 		test_images_array = temp_images_array
